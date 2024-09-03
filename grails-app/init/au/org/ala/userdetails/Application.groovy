@@ -20,6 +20,7 @@ import grails.boot.GrailsApp
 import grails.boot.config.GrailsAutoConfiguration
 import groovy.util.logging.Slf4j
 import okhttp3.OkHttpClient
+import org.pac4j.http.client.direct.DirectBearerAuthClient
 import org.springframework.boot.actuate.jdbc.DataSourceHealthIndicator
 import org.springframework.boot.actuate.mongo.MongoHealthIndicator
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
@@ -74,6 +75,11 @@ class Application extends GrailsAutoConfiguration {
         MongoHealthIndicator mongoHealthIndicator(MongoTemplate mongoTemplate) {
             new MongoHealthIndicator(mongoTemplate)
         }
+    }
+
+    @Bean
+    DirectBearerAuthClient directBearerAuthClient() {
+        new DirectBearerAuthClient()
     }
 
 }
