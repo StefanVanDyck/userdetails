@@ -43,7 +43,7 @@ class User implements Serializable {
 
     static mapping = {
         table 'users'
-        id (generator:'identity', column:'userid', type:'long')
+        id (column:'userid', type:'string')
         userName column:  'username'
         firstName column:  'firstname'
         lastName column:  'lastname'
