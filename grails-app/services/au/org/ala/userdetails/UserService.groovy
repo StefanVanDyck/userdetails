@@ -27,6 +27,8 @@ import org.apache.http.HttpStatus
 import org.grails.orm.hibernate.cfg.GrailsHibernateUtil
 import org.springframework.beans.factory.annotation.Value
 
+import java.sql.Timestamp
+
 @Transactional
 class UserService {
 
@@ -332,28 +334,14 @@ class UserService {
      */
     @Transactional(readOnly = true)
     User getCurrentUser() {
-
-        def userId = authService.getUserId()
-        if (userId == null) {
-            // Problem. This might mean an expired cookie, or it might mean that this service is not in the authorised system list
-            log.debug("Attempt to get current user returned null. This might indicating that this machine is not the authorised system list")
-            return null
-        }
-
-        User user = null
-        if(userId.toString().isLong()){
-            user = User.get(userId.toLong())
-            if (user == null && Environment.current != Environment.PRODUCTION) {
-                // try looking up by email, as this may be a dev session, and the id's might not line up because this service is talking to the local database
-                def email = authService.getEmail()
-                if (email) {
-                    user = User.findByEmail(email)
-                }
-            }
-        } else {
-            user = User.findByEmail(authService.getEmail())
-        }
-
+        def user = new User()
+        user.userName = authService.getUserName()
+        user.email = authService.getEmail()
+        user.firstName = authService.getFirstName()
+        user.lastName = authService.getLastName()
+        user.activated = true
+        user.locked = false
+        user.tempAuthKey = UUID.randomUUID().toString()
         return user
     }
 
