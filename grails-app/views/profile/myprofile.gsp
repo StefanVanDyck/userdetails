@@ -111,7 +111,7 @@
                         </div>
                         <div class="content">
                             <h4 id="records-annotated">
-                                <a href="${grailsApplication.config.getProperty('biocache.search.url')}%22${user.id}%22">
+                                <a href="${grailsApplication.config.getProperty('biocache.search.url')}%22${user.userName}%22">
                                     <g:message code="myprofile.view.records.you.annotated" />
                                 </a>
                             </h4>

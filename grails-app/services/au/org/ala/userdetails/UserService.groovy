@@ -335,8 +335,7 @@ class UserService {
     @Transactional(readOnly = true)
     User getCurrentUser() {
         def user = new User()
-        user.id = authService.getUserId()
-        user.userName = authService.getUserName()
+        user.userName = authService.getUserId()
         user.email = authService.getEmail()
         user.firstName = authService.getFirstName()
         user.lastName = authService.getLastName()
