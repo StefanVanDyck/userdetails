@@ -81,19 +81,6 @@
                 <div class="col-lg-4">
                     <div class="d-flex">
                         <div class="image">
-                                <img src="${grailsApplication.config.getProperty('logo.downloads')}" alt="">
-                        </div>
-                        <div class="content">
-                            <h4 id="your-doi">
-                                <a href="${grailsApplication.config.getProperty('biocache.myDownloads.url')}">
-                                    <g:message code="myprofile.your.downloads" />
-                                </a>
-                            </h4>
-                            <p><g:message code="myprofile.your.downloads.desc" /></p>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="image">
                             <img src="${grailsApplication.config.getProperty('logo.specieslists')}" alt="">
                         </div>
                         <div class="content">
